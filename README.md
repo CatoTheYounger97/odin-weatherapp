@@ -1,2 +1,2 @@
 # webdev-template
-A template for web development in VS Code. Using: Node, Webpack, Eslint and Prettier
+A weather app using WeatherAPI for the Odin Project. 
