@@ -1,4 +1,4 @@
-import { fetchGiffy, getWeather } from "./weather";
+import { fetchGiffy, getWeather } from "./api";
 
 export function setupPage() {
   const dashboard = document.createElement("div");
@@ -11,6 +11,9 @@ export function setupPage() {
 
   document.body.appendChild(container);
 
+  // fetch data
+  // display data
+
   display("london");
 }
 
@@ -18,7 +21,6 @@ async function display(search) {
   // get data
   const data = await getWeather(search);
   const currentData = data.current;
-  const forecastData = data.forecast;
   const locationData = data.location;
 
   console.log(data);
@@ -73,10 +75,13 @@ function buildCurrent(weatherData, locationData) {
 
   // icon
   const img = document.createElement("img");
-  fetchGiffy(weatherData.condition.text).then((res) => {
+  const gifSearch = weatherData.condition.text + " weather nature";
+  console.log(gifSearch);
+  fetchGiffy(gifSearch).then((res) => {
     img.setAttribute("src", res.data.images.original.url);
   });
 
+  // build dom elements
   const container = document.createElement("div");
   container.appendChild(location);
   container.appendChild(list);
